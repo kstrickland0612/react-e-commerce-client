@@ -4,6 +4,8 @@ import { Route } from 'react-router-dom'
 
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
+import Item from './item/Item'
+import Basket from './basket/Basket'
 import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
@@ -43,6 +45,9 @@ class App extends Component {
           </Alert>
         ))}
         <main className="container">
+          <Route exact path='/' render={() => (
+            <Item user={user} />
+          )} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
@@ -54,6 +59,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/basket' render={() => (
+            <Basket user={user} />
           )} />
         </main>
       </React.Fragment>
